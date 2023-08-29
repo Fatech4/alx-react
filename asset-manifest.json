@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/alx-react/static/css/main.c32deafd.css",
+    "main.js": "/alx-react/static/js/main.73a630da.js",
+    "static/media/logo.jpg": "/alx-react/static/media/logo.24bab5d633e36ca8d17e.jpg",
+    "index.html": "/alx-react/index.html",
+    "main.c32deafd.css.map": "/alx-react/static/css/main.c32deafd.css.map",
+    "main.73a630da.js.map": "/alx-react/static/js/main.73a630da.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c32deafd.css",
+    "static/js/main.73a630da.js"
+  ]
+}
