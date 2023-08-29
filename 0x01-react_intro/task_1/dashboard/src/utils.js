@@ -1,17 +1,17 @@
-import React from 'react';
-
 export function getFullYear() {
   const d = new Date();
   let year = d.getFullYear();
-  return <span>{year}</span>;
+  return year;
 }
 
 export function getFooterCopy(isIndex) {
-  return (
-    <span>
-      {isIndex ? 'Holberton School' : 'Holberton School main dashboard'}
-    </span>
-  );
+  if (isIndex) {
+    return 'Holberton School';
+  } else {
+  }
+  return 'Holberton School main dashboard';
 }
 
-// export default { getFullYear, getFooterCopy };
+export function getLatestNotification() {
+  return '<strong>Urgent requirement</strong> - complete by EOD';
+}
