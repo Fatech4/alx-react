@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.App {
+  position: relative;
+  height: 100vh;
+  padding: 10px;
+  width: 100%;
+}
+.App-header {
+  display: flex;
+  border-bottom: 2px solid red;
+}
+.logo img {
+  width: 200px;
+  height: 200px;
+}
+.title {
+  vertical-align: middle;
+  line-height: 150px;
+  color: red;
+}
+.App-body p {
+  padding: 0.5rem;
+}
+.App-footer {
+  border-top: 2px solid red;
+  padding-top: 0.2rem;
+  padding-left: 0.5rem;
+  position: absolute;
+  overflow: hidden;
+  bottom: 0px;
+  width: 100%;
+  text-align: center;
+}
+.App-footer p {
+  width: 100%;
+}
