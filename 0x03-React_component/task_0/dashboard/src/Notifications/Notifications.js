@@ -37,7 +37,7 @@ function Notifications({ listNotifications }) {
                   type={notification.type}
                   value={notification.value}
                   key={notification.id}
-                  html={notification.html}
+                  html={notification.html ? notification.html.__html : ''}
                 ></NotificationItem>
               );
             })}
