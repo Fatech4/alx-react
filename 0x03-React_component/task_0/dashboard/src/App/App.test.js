@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount, unmount } from 'enzyme';
 import App from './App';
 import '../Login/Login.css';
 import '../Footer/Footer.css';
@@ -19,6 +19,28 @@ jest.mock('../Login/Login.css', () => 'Login.css');
 jest.mock('../Footer/Footer.css', () => 'Footer.css');
 jest.mock('../Header/Header.css', () => 'Header.css');
 jest.mock('../Notifications/Notifications.css', () => 'Notifications.css');
+it('calls logOut function and displays alert when Ctrl + h is pressed', () => {
+  // Mock the logOut function
+  const logOutMock = jest.fn();
+
+  // Mount the component with the logOut prop
+  const wrapper = mount(<App logOut={logOutMock} />);
+
+  // Create a fake keydown event for Ctrl + h
+  const event = new KeyboardEvent('keydown', { key: 'h', ctrlKey: true });
+
+  // Dispatch the keydown event on the document
+  document.dispatchEvent(event);
+
+  // Expect the logOut function to have been called
+  expect(logOutMock).toHaveBeenCalled();
+
+  // Expect the alert function to have been called with the specified message
+  expect(window.alert).toHaveBeenCalledWith('Logging you out');
+
+  // Clean up
+  wrapper.unmount();
+});
 it('renders without crashing', () => {
   const wrapper = shallow(<App />);
   expect(wrapper).toBeTruthy();

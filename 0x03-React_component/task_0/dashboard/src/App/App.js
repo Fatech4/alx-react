@@ -16,7 +16,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      isLoggedIn: this.props.isLoggedIn || false,
+      isLoggedIn: this.props.isLoggedIn,
+      logOut: this.props.logOut,
       listCourses: [
         { id: 1, name: 'ES6', credit: 60 },
         { id: 2, name: 'Webpack', credit: 20 },
@@ -29,6 +30,18 @@ class App extends Component {
       ],
     };
   }
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyDown);
+  }
+  handleKeyDown = (event) => {
+    if (event.ctrlKey && event.key === 'h') {
+      // Display an alert
+      alert('Logging you out');
+
+      // Call the logOut function from props
+      this.props.logOut();
+    }
+  };
 
   render() {
     return (
@@ -53,6 +66,11 @@ class App extends Component {
 
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
+  logOut: PropTypes.func,
+};
+App.defaultProps = {
+  isLoggedIn: false,
+  logOut: () => {},
 };
 
 export default App;
