@@ -9,7 +9,9 @@ module.exports = {
      path: path.resolve(__dirname, 'public')
 	},
    mode: 'production',
-   rules: [
+   module:
+     {
+      rules: [
 
     {
       test: /\.css$/,
@@ -20,4 +22,5 @@ module.exports = {
       type: 'asset/resource',
     },
   ],
+     },
 };
