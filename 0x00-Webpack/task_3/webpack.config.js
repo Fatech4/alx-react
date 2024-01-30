@@ -55,9 +55,9 @@ module.exports = {
     ],
   },
   devServer: {
-    static: path.resolve(__dirname, 'public'),
+    contentBase: './public',
     port: 8564,
-    open: true, // Open the default browser when the server starts
+    // open: true, // Open the default browser when the server starts
   },
   plugins: [
     new HtmlWebpackPlugin({
