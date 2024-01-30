@@ -13,6 +13,8 @@ $(document).ready(function() {
 		k++;
 	     $('#count').text(`${k} clicks on the button`);
   }
-	const debouncedUpdateCounter = _.debounce(updateCounter, 1000);
-	$('button').click(debouncedUpdateCounter);
+	$('button').on('click', _.debounce(updateCounter, 1000,{
+	'leading' : true,
+	'trailing': false
+	}));
 });
