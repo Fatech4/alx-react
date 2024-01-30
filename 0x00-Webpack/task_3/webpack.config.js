@@ -1,22 +1,30 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
-     main: path.resolve(__dirname, './js/dashboard_main.js'),
-	},
+    header: './modules/header/header.js',
+    body: './modules/body/body.js',
+    footer: './modules/footer/footer.js',
+  },
   output: {
-     filename: 'bundle.js',
-     path: path.resolve(__dirname, 'public')
-	},
-   mode: 'production',
-   module:
-     {
-      rules: [
-
-    {
-      test: /\.css$/,
-      use: ["style-loader", "css-loader"]
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'public'),
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
     },
+  },
+  mode: 'development',
+  devtool: 'inline-source-map',
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
       {
         test: /\.(png|jpg|jpeg|gif)$/i,
         use: [
@@ -31,7 +39,7 @@ module.exports = {
                 enabled: false,
               },
               pngquant: {
-                quality: [0.65, 0.90],
+                quality: [0.65, 0.9],
                 speed: 4,
               },
               gifsicle: {
@@ -46,4 +54,16 @@ module.exports = {
       },
     ],
   },
-    };
+  devServer: {
+    static: path.resolve(__dirname, 'public'),
+    port: 8564,
+    open: true, // Open the default browser when the server starts
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      chunks: ['header', 'body', 'footer'],
+    }),
+    new CleanWebpackPlugin(),
+  ],
+};
