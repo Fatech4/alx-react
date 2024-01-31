@@ -11,4 +11,3 @@ root.render(
     <Notification />
   </React.StrictMode>
 );
-

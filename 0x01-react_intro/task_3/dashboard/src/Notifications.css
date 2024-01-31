@@ -9,10 +9,10 @@
 .Notifications ul {
   padding-left: 2rem;
 }
-li[data-priority='default'] {
+li[data='default'] {
   color: blue;
 }
-li[data-priority='urgent'] {
+li[data='urgent'] {
   color: red;
 }
 button img {
@@ -25,4 +25,3 @@ button {
   background-color: none;
   cursor: pointer;
 }
-

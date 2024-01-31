@@ -12,6 +12,14 @@ function Notifications() {
     <>
       <div className='Notifications' style={{ position: 'relative' }}>
         <p>Here is the list of notifications</p>
+        <ul>
+          <li data='default'>New course available</li>
+          <li data='urgent'>New resume available</li>
+          <li
+            data='urgent'
+            dangerouslySetInnerHTML={{ __html: getLatestNotification() }}
+          ></li>
+        </ul>
         <button
           aria-label='Close'
           style={{
@@ -22,16 +30,8 @@ function Notifications() {
           }}
           onClick={handleClose}
         >
-          <img src={Close} alt='Close' /> 
+          <img src={Close} alt='Close' />
         </button>
-        <ul>
-          <li data-priority='default'>New course available</li>
-          <li data-priority='urgent'>New resume available</li>
-          <li
-            data-priority='urgent'
-            dangerouslySetInnerHTML={{ __html: getLatestNotification() }}
-          ></li>
-        </ul>
       </div>
       <App />
     </>
