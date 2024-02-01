@@ -17,10 +17,24 @@ output: {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+	    {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
       // Rule for handling image files
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/i,
         use: [
+		 {
+            loader: 'url-loader',
+            options: {
+              limit: 8192, // Inline files smaller than 8 KB as base64, otherwise, use file-loader
+              name: 'images/[name].[hash].[ext]', // Output path and file name
+            },
+          },
           {
         
             loader: 'image-webpack-loader',
@@ -50,7 +64,8 @@ output: {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Webpack Output",
+      template: path.resolve(__dirname, '../dist/index.html'),
+	    filename: 'index.html',
     }),
   ],
 };
