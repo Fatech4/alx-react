@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import Notification from './Notifications';
+import Notification from './Notifications/Notifications';
 
 // import reportWebVitals from './reportWebVitals';
 
