@@ -9,6 +9,11 @@ output: {
   filename: 'bundle.js',
   path: path.resolve(__dirname, '../dist')
 },
+	devServer: {
+  static: '../dist',
+  open: true,
+		hot:true,
+},
 	devtool: 'inline-source-map', // Add inline source map
   module: {
     rules: [

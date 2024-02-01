@@ -2,6 +2,9 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import App from './App';
 
+jest.mock('../assets/holberton-logo.jpg', () => 'holberton-logo.jpg');
+jest.mock('./App.css', () => 'App.css');
+
 it('renders without crashing', () => {
   const wrapper = shallow(<App />);
   expect(wrapper).toBeTruthy();
