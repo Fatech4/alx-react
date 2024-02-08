@@ -16,8 +16,25 @@ class App extends React.Component {
     super(props);
   }
 
+  handleKeyDown = (event) => {
+    if (event.ctrlKey && event.key === 'h') {
+      window.alert('Logging you out');
+      this.props.logOut();
+    }
+  };
+
+  componentDidMount() {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('keydown', this.handleKeyDown);
+    }
+  }
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown);
+  }
+
   render() {
     const { isLoggedIn } = this.props;
+
     const listCourses = [
       { id: 1, name: 'ES6', credit: 60 },
       { id: 2, name: 'Webpack', credit: 20 },
@@ -46,11 +63,14 @@ class App extends React.Component {
     );
   }
 }
+
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
+  logOut: PropTypes.func,
 };
 
 App.defaultProps = {
   isLoggedIn: false,
+  logOut: () => {},
 };
 export default App;

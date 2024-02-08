@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import App from './App';
 import '../Login/Login.css';
 import '../Footer/Footer.css';
@@ -75,4 +75,21 @@ it('verify that it contains Footer', () => {
 
   // Assert that the ChildComponent is present in the ParentComponent
   expect(childComponent.exists()).toBeTruthy();
+});
+
+it('should log out when Ctrl+H is pressed', () => {
+  const logOutMock = jest.fn();
+  const consoleSpy = jest.spyOn(window, 'alert').mockImplementation();
+
+  const wrapper = shallow(<App logOut={logOutMock} />);
+  const event = new KeyboardEvent('keydown', {
+    key: 'h',
+    ctrlKey: true,
+  });
+
+  window.dispatchEvent(event);
+
+  expect(window.alert).toHaveBeenCalledWith('Logging you out');
+  expect(logOutMock).toHaveBeenCalled();
+  consoleSpy.mockRestore();
 });

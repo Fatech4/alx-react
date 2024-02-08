@@ -33,7 +33,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Index',
-      template: '../dist/index.html',
+      template: '/dist/index.html',
     }),
   ],
   devServer: {

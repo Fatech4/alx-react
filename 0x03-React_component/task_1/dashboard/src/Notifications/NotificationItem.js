@@ -2,7 +2,7 @@ import React from 'react';
 import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-function NotificationItem({ type = 'default', html, value }) {
+function NotificationItem({ type, html, value }) {
   return (
     <li data-priority={type}>
       {html ? (
@@ -14,8 +14,8 @@ function NotificationItem({ type = 'default', html, value }) {
   );
 }
 NotificationItem.protoTypes = {
-  html: PropTypes.shape({ __html: PropTypes.string }),
-  type: PropTypes.oneOf(['default', PropTypes.string]).isRequired,
-  value: PropTypes.string,
+  html: PropTypes.shape({ __html: PropTypes.string.isRequired }),
+  type: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
 };
 export default NotificationItem;
