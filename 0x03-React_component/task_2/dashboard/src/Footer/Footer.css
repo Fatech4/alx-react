@@ -1,0 +1,15 @@
+.App-footer {
+  border-top: 3px solid rgb(231, 46, 46);
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
+  position: absolute;
+  overflow: hidden;
+  bottom: 0px;
+  right: 1rem;
+  left: 1rem;
+  /* width: 100%; */
+  text-align: center;
+}
+.App-footer p {
+  width: 100%;
+}
