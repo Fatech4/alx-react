@@ -1,0 +1,18 @@
+/* table {
+  border: 1px solid black;
+  border-collapse: collapse;
+  width: 85%;
+  margin: 0 auto;
+}
+th,
+td {
+  border-bottom: 1px solid black;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+
+  text-align: left;
+}
+
+td {
+  border-bottom: none;
+} */

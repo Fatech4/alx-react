@@ -1,5 +1,3 @@
-import React, { Fragment } from 'react';
-
 import Login from '../Login/Login';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
@@ -48,7 +46,7 @@ class App extends React.Component {
     ];
     return (
       <>
-        <div className={`${App} ${css(styles.app)}`}>
+        <div className={css(styles.app)}>
           <Notifications listNotifications={listNotifications} />
           <Header />
 
@@ -84,11 +82,10 @@ class App extends React.Component {
   }
 }
 const styles = StyleSheet.create({
-  app: {
-    position: 'relative',
-    height: '100vh',
-    padding: '1rem',
-    width: '100%',
+  appBody: {
+    padding: '0.5rem',
+    paddingLeft: '2rem',
+    paddingTop: '3rem',
   },
   appFooter: {
     borderTop: '3px solid rgb(231, 46, 46)',
@@ -99,14 +96,7 @@ const styles = StyleSheet.create({
     bottom: '0px',
     right: '1rem',
     left: '1rem',
-
     textAlign: 'center',
-  },
-
-  appBody: {
-    padding: '0.5rem',
-    paddingLeft: '2rem',
-    paddingTop: '3rem',
   },
 });
 App.propTypes = {
