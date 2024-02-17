@@ -91,6 +91,26 @@ Notifications.propTypes = {
 Notifications.defaultProps = {
   listNotifications: [],
 };
+const opacityChangeAnimation = {
+  '0%': {
+    opacity: '0.5',
+  },
+  '100%': {
+    opacity: '1',
+  },
+};
+
+const bounceAnimation = {
+  '0%': {
+    transform: 'translateY(0px)',
+  },
+  '50%': {
+    transform: 'translateY(-5px)',
+  },
+  '100%': {
+    transform: 'translateY(0px)',
+  },
+};
 
 const styles = StyleSheet.create({
   menuItem: {
@@ -102,6 +122,10 @@ const styles = StyleSheet.create({
       display: 'block',
     },
     ':hover': {
+      animationName: [bounceAnimation],
+      animationDuration: '0.5s',
+      animationIterationCount: '3',
+      animationDirection: 'alternate',
       visibility: 'hidden',
     },
   },
@@ -124,6 +148,12 @@ const styles = StyleSheet.create({
     right: '0',
     display: 'none',
     boxSizing: 'border-box',
+    ':hover': {
+      animationName: [opacityChangeAnimation],
+      animationDuration: '0.5s',
+      animationIterationCount: '3',
+      animationDirection: 'alternate',
+    },
     '@media screen and (max-width:900px)': {
       width: '100%',
       height: '100%',
