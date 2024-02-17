@@ -1,5 +1,5 @@
 import React from 'react';
-import './Notifications.css';
+
 import Close from '../assets/close-icon.png';
 import { getLatestNotification } from '../utils/utils';
 import NotificationItem from './NotificationItem';
@@ -36,14 +36,23 @@ class Notifications extends React.Component {
   markAsRead = (id) => {
     console.log(`Notification ${id} has been marked as read`);
   };
+
   render() {
     return (
       <div>
-        <div className={css(styles.menuItem)}>Your notifications</div>
+        <div
+          className={`notificationClick ${css(
+            styles.menuItem,
+            styles.menuItemHover,
+            styles.menuItemMediaQuery
+          )}`}
+        >
+          Your notifications
+        </div>
         {this.props.listNotifications.length == 0 ? (
           <p>No new notification for now</p>
         ) : (
-          <div className={css(styles.notifications)}>
+          <div className={css(styles.notifications)} id='notificationBlock'>
             <p>Here is the list of notifications</p>
             <button
               aria-label='Close'
@@ -82,11 +91,28 @@ Notifications.propTypes = {
 Notifications.defaultProps = {
   listNotifications: [],
 };
+
 const styles = StyleSheet.create({
   menuItem: {
     textAlign: 'right',
+    cursor: 'pointer',
   },
+  menuItemHover: {
+    ':hover + div': {
+      display: 'block',
+    },
+    ':hover': {
+      visibility: 'hidden',
+    },
+  },
+  menuItemMediaQuery: {
+    '@media screen and (max-width:900px)': {
+      // Media query styles for max-width 900px
+    },
+  },
+
   notifications: {
+    fontSize: '20px',
     border: '1px dotted red',
     padding: '0.5rem',
     marginTop: '0.5rem',
@@ -96,11 +122,30 @@ const styles = StyleSheet.create({
     width: '400px',
     position: 'absolute',
     right: '0',
+    display: 'none',
+    boxSizing: 'border-box',
+    '@media screen and (max-width:900px)': {
+      width: '100%',
+      height: '100%',
+      left: '0',
+      top: '0',
+      right: '100px',
+      marginTop: '0',
+      marginLeft: '0',
+      padding: '0',
+      margin: '0',
+      backgroundColor: 'white',
+      border: 'none',
+    },
   },
   ul: {
     paddingLeft: '2rem',
+    '@media screen and (max-width:900px)': {
+      listStyleType: 'none',
+      padding: '0',
+      margin: '0',
+    },
   },
-
   img: {
     width: '10px',
     height: '10px',
@@ -113,4 +158,3 @@ const styles = StyleSheet.create({
   },
 });
 export default Notifications;
-;

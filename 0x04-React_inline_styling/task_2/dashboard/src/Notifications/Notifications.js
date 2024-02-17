@@ -1,5 +1,5 @@
 import React from 'react';
-import './Notifications.css';
+
 import Close from '../assets/close-icon.png';
 import { getLatestNotification } from '../utils/utils';
 import NotificationItem from './NotificationItem';
@@ -113,4 +113,3 @@ const styles = StyleSheet.create({
   },
 });
 export default Notifications;
-;
