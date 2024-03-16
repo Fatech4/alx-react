@@ -1,0 +1,96 @@
+import React from 'react';
+import { shallow } from 'enzyme';
+import Notifications from './Notifications';
+import '../assets/close-icon.png';
+import NotificationItem from './NotificationItem';
+import { getLatestNotification } from '../utils/utils';
+
+jest.mock('../assets/close-icon.png', () => 'close-icon.png');
+
+describe('Notifications component', () => {
+  const listNotifications = [
+    { id: 1, type: 'default', value: 'New course available' },
+    { id: 2, type: 'urgent', value: 'New resume available' },
+    { id: 3, type: 'urgent', html: { __html: getLatestNotification() } },
+  ];
+  it('renders without crashing', () => {
+    const wrapper = shallow(<Notifications />);
+    expect(wrapper).toBeTruthy();
+  });
+  it('renders without crashing when an empty array is passed', () => {
+    const wrapper = shallow(<Notifications listNotifications={[]} />);
+    expect(wrapper).toBeTruthy();
+  });
+  it('renders list items', () => {
+    const wrapper = shallow(
+      <Notifications listNotifications={listNotifications} />
+    );
+    const listItems = wrapper.find('NotificationItem');
+    expect(listItems.length).toBe(listNotifications.length);
+  });
+  it('displays "No new notification for now" when listNotifications is empty', () => {
+    const wrapper = shallow(<Notifications listNotifications={[]} />);
+    expect(wrapper.exists()).toBeTruthy();
+    expect(wrapper.text()).toContain('No new notification for now');
+  });
+  it('does not display "Here is the list of notifications" when listNotifications is empty', () => {
+    const wrapper = shallow(<Notifications listNotifications={[]} />);
+    expect(wrapper.exists()).toBeTruthy();
+    expect(wrapper.text()).not.toContain('Here is the list of notifications');
+  });
+});
+
+it('verify that clicking on the menu item calls handleDisplayDrawer', () => {
+  const mockHandleDisplayDrawer = jest.fn();
+
+  // Shallow render the Notifications component with necessary props
+  const wrapper = shallow(
+    <Notifications
+      displayDrawer={true}
+      handleDisplayDrawer={mockHandleDisplayDrawer}
+    />
+  );
+
+  // Create a spy on the handleDisplayDrawer function
+  const handleDisplayDrawerSpy = jest.spyOn(
+    wrapper.instance().props,
+    'handleDisplayDrawer'
+  );
+
+  // Simulate a click on the menu item (assuming it's an <a> tag)
+  wrapper.find('.menuItem').simulate('click');
+
+  // Verify that handleDisplayDrawer function is called
+  expect(handleDisplayDrawerSpy).toHaveBeenCalled();
+
+  // Restore the spy
+  handleDisplayDrawerSpy.mockRestore();
+});
+it('verify that clicking on the button calls handleHideDrawer', () => {
+  const mockHandleHideDrawer = jest.fn();
+  const initialList = [
+    { id: 1, type: 'default', value: 'New course available' },
+  ];
+  // Shallow render the Notifications component with necessary props
+  const wrapper = shallow(
+    <Notifications
+      listNotifications={initialList}
+      displayDrawer={true}
+      handleHideDrawer={mockHandleHideDrawer}
+    />
+  );
+
+  // Create a spy on the handleDisplayDrawer function
+  const handleHideDrawerSpy = jest.spyOn(
+    wrapper.instance().props,
+    'handleHideDrawer'
+  );
+
+  wrapper.find('button').simulate('click');
+
+  // Verify that handleDisplayDrawer function is called
+  expect(handleHideDrawerSpy).toHaveBeenCalled();
+
+  // Restore the spy
+  handleHideDrawerSpy.mockRestore();
+});
